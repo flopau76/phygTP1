@@ -1,6 +1,6 @@
 PAUTET Florence
 
-# PHYG TP: comparasion de séquences sans alignements
+# PHYG TP1: comparaison de séquences sans alignements
 
 ## 1: Notions générales
 
@@ -75,3 +75,12 @@ En appliquant un algorithme de type UPGMA, on obtient un groupe de 3 organismes 
 
 Cela fait sens, puisque qu'en regardant les organismes correspondant, on constate que les séquences les plus proches appartiennent à _Escherichia coli_, tandis que les deux autres organismes sont deux bactéries du genre _Proteus_: _Proteus appendicitidis_ et _Proteus mirabilis_.
 
+
+# TP2: échantillonage
+
+## principe du MinHash
+Plutôt que de comparer l'intégralité des kmers des génomes, nous les échantillons en utilisant l'algorithme de minhash. Cet algorithme permet de sélectionner un sous-ensemble de taille $s$ uniformément distribué parmi notre ensemble de départ. Il consiste à appliquer une fonctions de hachage bien choisie, de notre ensemble de départ vers $\N$, puis à garder les $s$ kmers ayant la valeur de hachage la plus petite.
+
+
+### implémentation pratique
+Les génomes de l'homme, du chimpanzé et de la souris sont beaucoup plus grands que ceux étudiés précédement. Précédement, l'intégralité des génomes étaient chargés en mémoire, avant de calculer les kmers. Cette fois, ce n'est plus possible pour des raisons d'espaces disponible. L'algorithme de MinHash est donc appliqué directement pendant la lecture des fichiers, afin de ne conserver qu'au plus $s$ kmers en mémoire.
